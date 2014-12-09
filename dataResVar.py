@@ -157,8 +157,8 @@ if __name__ == '__main__':
     business_text = {}
     test_array = []
     average_rev = 0.0
-    best_business_array = ["suO9O-o1wk9DxYIemojpXQ", "jOSnxb3RdIGJjc66ZUPrAQ", "nCsH1m5Knb8lA8mVktBp1w", "13JSeg330MA5sNhgKzRKMw", "QOC_lGvP9zXcO8jyJ1AyxA", "ufpRzsHvtb-c9H87azPmRA", "CsYj-3uhV5c4jDue8Dp9FA", "XpZpY607eVH5DFbxl6hsag", "2C3J17swOdV7O_QHxzh2bQ", "O2v3n4EHhME9IbLEUBLtng"]
-    worst_business_array = ["7fM6ZxF_uHQQIv74vby2nA", "7DYg9G8cLyBRJl1dvngvow", "29ljx7-UmdQC7iArbYwIvw", "1ytwEIHiBX8OrRvS8LTh-A", "P9gLMNOPKI0JnJeuyCr-0g", "TAmyPRgCD4cg62NpEPE6EQ", "ZUz0eeKdmmT1XYzSf2k4tg", "55wvJ5wTgthTyJ-xNHYu-Q", "UAFJr-nn7hGMMbOj26YU9g", "lFS5gqXvAYuF_JTuiLkwi"]
+    best_business_array = ["qIyqUlzqEAeb8MmDZ2o5kQ", "YkxyI2guuPcmgWFk0a0aDQ", "i_hw78DZv-oGvBvTx8FU3A", "MY0_6BAzQCu4sqXqwNEFfg", "CDN--GWL8gm4TsFFtccpaA", "e3v5KRh05Qqb64U6R8U-rA", "K2VQpb53hzGwSI5wfepEAw", "8Cg_Y6kI0TPaGYSSLGvYgg", "A8dOA00FGNoJ46CDo6cTvQ", "M4aGbEXZjOnBFn9C6IbrYQ"]
+    worst_business_array = ["UmhTiNOKareQDP7D9aAnKw", "KwLfgeylp9d8zY3KacREiw", "c2OXxIm1Gu3Hxh7K9Rsovw", "8HCC8NuJmdHnEg2XC00NPg", "WnY4HPJIYNXOPQH2mFzl2Q", "YhBFM3xy2G6DQC2VKXVkTA", "YZxA6w82eFJFntwqJLln6w", "d-_ZMeph2MIsCOEhKCkTbA", "YY1UCrnuOLCTxK3mKsqiDw", "1bnte8O-rO_RcRlp9y2u7Q"] 
 
     goodDict ={}
     badDict = {}
@@ -172,7 +172,7 @@ if __name__ == '__main__':
                 tempArray = []
                 revID = str(json.loads(line)['review_id'])
                 #print revID
-                if revID == "0L5bdVwJhYdIIC2wAvwUsQ":
+                if revID == "BN6IXwPw6z9snv0vgWDBEg" or revID == "YRv-itqunrQYDQLn23qo9w" or revID == "Z1vX3hppVCJENUjTMXtGaA":
                     pass
                 else:
                     revText = str(json.loads(line.encode('utf-8','ignore'))['text'])
@@ -189,10 +189,11 @@ if __name__ == '__main__':
             else:
                 revID = str(json.loads(line)['review_id'])
                 #print revID
-                if revID == "0L5bdVwJhYdIIC2wAvwUsQ":
+                if revID == "BN6IXwPw6z9snv0vgWDBEg" or revID == "YRv-itqunrQYDQLn23qo9w" or revID == "Z1vX3hppVCJENUjTMXtGaA":
                     pass
                 else:
-                    revText = str(json.loads(line)['text'])
+                    #print revID
+                    revText = str(json.loads(line.decode('utf-8','ignore'))['text'])
                     revDate = str(json.loads(line)['date'])
                     revStars = float(json.loads(line)['stars'])
                     revDate = revDate.split("-")
@@ -201,6 +202,43 @@ if __name__ == '__main__':
                     tempArray.append(revStars)
                     tempArray.append(revText)
                     (goodDict[business_id])[revID]=tempArray
+                    business_text[business_id]+=revText
+        elif business_id in worst_business_array:
+            if not badDict.has_key(business_id):
+                tempDict = {}
+                tempArray = []
+                revID = str(json.loads(line)['review_id'])
+                #print revID
+                if revID == "BN6IXwPw6z9snv0vgWDBEg" or revID == "YRv-itqunrQYDQLn23qo9w" or revID == "Z1vX3hppVCJENUjTMXtGaA" or revID == "sAzplyyZDs5jcoUpZ_3lfg" or revID == "60s8_r9BHlwh801GKW2Ygg" or revID == "gk5yxSW9s331-iaVJSf8oQ" or revID == "xmCT28ZTG8rYKFQXHecvaA" or revID == "440P8oCDTXVgpMGUW26byw" or revID == "5gI-UrT8dxN7FWGSeTPZHQ" or revID == "WvomyhDFSCjBBdrDW5PnGw" or revID == "BXs4snk-RDdIqBESWO_5yQ" or revID == "kbQ4XM_zvaZkn6ZRDsMRRw" or revID == "5BFiTms36tP92pnq1AmEVA" or revID == "72OLqyV5Pe4ho4YuViIDFg" or revID == "gZngWxongP7TZM58QkvWMw" or revID == "EvX_oJGUyvqLosOa34z2CA" or revID == "l8IHKt01JmU-5E5axcBNWQ" or revID == "rpY8_TykotycG6e6PD_nMA" or revID == "L3a5ZY-L9l5dZ4W9kXwLhw" or revID == "vVNyeZ9qcKWeQuLtH1lgBQ" or revID == "7AOczgVkBxqeGZxeJvmwNg" or revID == "RmJmVT2Jy1qfVlGos3qP6w" or revID == "uLa7jetZ-t_oosre04OE9A" or revID == "uUfYyyJh0lqvcP10oBaRNQ" or revID == "lK6XytqAPtPUA9W8R136yQ":
+                    pass
+                else:
+                    revText = str(json.loads(line.encode('utf-8','ignore'))['text'])
+                    revDate = str(json.loads(line)['date'])
+                    revStars = float(json.loads(line)['stars'])
+                    revDate = revDate.split("-")
+                    revDate = datetime.date(int(revDate[0]), int(revDate[1]), int(revDate[2]))
+                    tempArray.append(revDate)
+                    tempArray.append(revStars)
+                    tempArray.append(revText)
+                    tempDict[revID]=tempArray
+                    badDict[business_id]=tempDict
+                    business_text[business_id]=revText
+            else:
+                revID = str(json.loads(line)['review_id'])
+                #print revID
+                if revID == "BN6IXwPw6z9snv0vgWDBEg" or revID == "YRv-itqunrQYDQLn23qo9w" or revID == "Z1vX3hppVCJENUjTMXtGaA" or revID == "sAzplyyZDs5jcoUpZ_3lfg" or revID == "60s8_r9BHlwh801GKW2Ygg" or revID == "gk5yxSW9s331-iaVJSf8oQ"  or revID == "xmCT28ZTG8rYKFQXHecvaA" or revID == "440P8oCDTXVgpMGUW26byw" or revID == "5gI-UrT8dxN7FWGSeTPZHQ" or revID == "WvomyhDFSCjBBdrDW5PnGw" or revID == "BXs4snk-RDdIqBESWO_5yQ" or revID == "kbQ4XM_zvaZkn6ZRDsMRRw" or revID == "5BFiTms36tP92pnq1AmEVA" or revID == "72OLqyV5Pe4ho4YuViIDFg" or revID == "gZngWxongP7TZM58QkvWMw" or revID == "EvX_oJGUyvqLosOa34z2CA" or revID == "l8IHKt01JmU-5E5axcBNWQ" or revID == "rpY8_TykotycG6e6PD_nMA" or revID == "L3a5ZY-L9l5dZ4W9kXwLhw" or revID == "vVNyeZ9qcKWeQuLtH1lgBQ" or revID == "7AOczgVkBxqeGZxeJvmwNg" or revID == "RmJmVT2Jy1qfVlGos3qP6w" or revID == "uLa7jetZ-t_oosre04OE9A" or revID == "uUfYyyJh0lqvcP10oBaRNQ" or revID == "lK6XytqAPtPUA9W8R136yQ":
+                    pass
+                else:
+                    #print revID
+                    revText = str(json.loads(line.decode('utf-8','ignore'))['text'])
+                    revDate = str(json.loads(line)['date'])
+                    revStars = float(json.loads(line)['stars'])
+                    revDate = revDate.split("-")
+                    revDate = datetime.date(int(revDate[0]), int(revDate[1]), int(revDate[2]))
+                    tempArray.append(revDate)
+                    tempArray.append(revStars)
+                    tempArray.append(revText)
+                    (badDict[business_id])[revID]=tempArray
                     business_text[business_id]+=revText
                 
 	# if line_num == 1000:
@@ -213,6 +251,7 @@ if __name__ == '__main__':
     # print test_array
     reviewCount=1
     arrayIter=0
+    print "===================Rising Stars======================="
     for x in goodDict:
         print "=====Business ID:"+str(x)+"===="
         reviewDict=goodDict[x]
@@ -229,5 +268,22 @@ if __name__ == '__main__':
             arrayIter+=3
         reviewCount=1
         arrayIter=0
-    	
+
+    print"\n===================Slumping Businesses======================="
+    for x in badDict:
+        print "=====Business ID:"+str(x)+"===="
+        reviewDict=badDict[x]
+        colOne, colTwo = unigram_count(business_text[x])
+        print colOne
+        print colTwo
+        for y in reviewDict:
+            contentArray=reviewDict[y]
+            print"Review Num:"+str(reviewCount)
+            print"Date: "+str(contentArray[arrayIter])
+            print"Stars: " +str(contentArray[arrayIter+1])
+            print"Text: "+str(contentArray[arrayIter+2])
+            reviewCount+=1
+            arrayIter+=3
+        reviewCount=1
+        arrayIter=0
     print"\nThe number of lines was: "+str(line_num)
