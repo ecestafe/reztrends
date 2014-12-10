@@ -1,4 +1,4 @@
-reztrends
+BuzTrendz (formerly known as Reztrendz)
 =========
 
 There are three python files used for the manipulation of the review json.
